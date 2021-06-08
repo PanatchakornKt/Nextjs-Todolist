@@ -1,14 +1,14 @@
 import { Button, DatePicker, Typography, version } from "antd";
 const { Title } = Typography;
+import AddTask from "@/components/AddTask";
 
-export default function Home() {
+const Home = () => {
   return (
     <>
-      <Title level={2}>antd version: {version}</Title>
-      <DatePicker />
-      <Button type="primary" className="ml-2">
-        Primary Button
-      </Button>
+    <title>DayTech TodoList</title>
+      <AddTask />
     </>
   );
 }
+
+export default Home;
