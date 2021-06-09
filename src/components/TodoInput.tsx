@@ -6,6 +6,7 @@ interface TodoInputProps {
 
 const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
   const [todo, setTodo] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
@@ -13,7 +14,12 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
 
   const onSubmitTodo = (e: TodoInputProps) => {
     e.preventDefault();
-    addTodo(todo);
+    if (todo.length === 0) {
+      setError("Please add some to do.");
+      alert(error);
+    } else {
+      addTodo(todo);
+    }
   };
 
   return (
