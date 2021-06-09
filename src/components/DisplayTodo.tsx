@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+//import { useRecoilState } from "recoil";
+//import { todosState } from "@/components/AtomsState";
 import Header from "@/components/Header";
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
@@ -22,8 +24,9 @@ export class Todo implements ITodo {
   }
 }
 
-const DisplayTodo = () => {
+const DisplayTodo: React.FC = () => {
   const [todos, setTodos] = useState([]);
+  //const [todos, setTodos] = useRecoilState(todosState);
 
   const addTodo = (todo: Todo) => {
     setTodos([todo, ...todos]);
@@ -33,8 +36,10 @@ const DisplayTodo = () => {
     <>
       <Header />
       <TodoInput addTodo={addTodo} />
-      <TodoList todos={todos} setTodos={setTodos} />
-      <DoneList todos={todos} setTodos={setTodos} />
+      <TodoList setTodos={setTodos} todos={todos} />
+      <DoneList setTodos={setTodos} todos={todos} />
+      {/* <TodoList />
+      <DoneList /> */}
     </>
   );
 };

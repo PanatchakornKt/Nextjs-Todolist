@@ -1,4 +1,6 @@
 import React from "react";
+//import { useRecoilValue } from "recoil";
+//import { todosState } from "@/components/AtomsState";
 import { Todo } from "@/components/DisplayTodo";
 
 interface TodoListProps {
@@ -7,9 +9,16 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
+  //const todos = useRecoilValue(todosState);
+
   const todosInProgress = todos.filter((todo) => {
     return !todo.isDone;
   });
+
+  const onDelete = (id: string) => {
+    console.log("delter");
+    //setTodos(todosInProgress.filter((todo) => todo.id !== id));
+  };
 
   const updateCheckedItem = (todo: Todo) => {
     todo.isDone = !todo.isDone;
@@ -33,6 +42,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
                   }}
                 />
                 {todo.content}
+                <button onClick={onDelete}>Deleted</button>
               </li>
             );
           })}

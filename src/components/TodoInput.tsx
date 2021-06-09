@@ -13,7 +13,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
     setTodo({ ...todo, content: e.target.value });
   };
 
-  const onSubmitTodo = (e: any) => {
+  const onSubmitTodo = (e: string) => {
     e.preventDefault();
     console.log("todo: ", todo);
     addTodo(todo);

@@ -1,4 +1,6 @@
 import React from "react";
+// import { useRecoilValue } from "recoil";
+// import { todosState } from "@/components/AtomsState";
 import { Todo } from "@/components/DisplayTodo";
 
 interface DoneListProps {
@@ -6,10 +8,10 @@ interface DoneListProps {
 }
 
 const DoneList: React.FC<DoneListProps> = ({ todos }) => {
-
-const todosDone = todos.filter((todo) => {
+  //const todos = useRecoilValue(todosState);
+  const todosDone = todos.filter((todo) => {
     return todo.isDone;
-});
+  });
 
   return (
     <>
