@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 const TodoInput = () => {
+  
   const todoObj = {
-    id: 1,
+    id: Math.random() * 1000,
     content: "",
     isDone: false,
   };
@@ -12,7 +13,7 @@ const TodoInput = () => {
     setTodo({ ...todo, content: e.target.value });
   };
 
-  const onSubmitTodo = (e: any) => { 
+  const onSubmitTodo = (e: any) => {
     e.preventDefault();
     console.log("todo: ", todo);
     setTodo(todoObj);
