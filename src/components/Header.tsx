@@ -1,9 +1,15 @@
 import React from "react";
 
-const Header = () => {
+interface HeaderProps {
+  title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title = "The Todo List" }) => {
   return (
     <>
-      <h1>Header</h1>
+      <header>
+        <h1>{title}</h1>
+      </header>
     </>
   );
 };
