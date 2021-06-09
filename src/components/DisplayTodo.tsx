@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import Header from "@/components/Header";
@@ -6,7 +6,7 @@ import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import DoneList from "@/components/DoneList";
 
-const DisplayTodo: React.FC = () => {
+const DisplayTodo = () => {
   const [todos, setTodos] = useRecoilState(todosState);
 
   const addTodo = (todo: string) => {
@@ -32,26 +32,6 @@ const DisplayTodo: React.FC = () => {
       date: dateTime,
     };
     setTodos([data, ...todos]);
-  };
-
-  useEffect(() => {
-    getLocal();
-  }, []);
-
-  useEffect(() => {
-    saveLocal();
-  }, [todos]);
-
-  const saveLocal = () => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
-  const getLocal = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      let Local = JSON.parse(localStorage.getItem("todos"));
-      setTodos(Local);
-    }
   };
 
   return (
