@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import { Todo } from "@/components/DisplayTodo";
 import { TodoProps } from "@/components/Types";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Space, Card } from "antd";
 
 const TodoList = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -37,26 +39,32 @@ const TodoList = () => {
     <>
       <div>
         <h2>Todo</h2>
+        <br />
         <ul>
           {todosInProgress.map((todo) => {
             return (
-              <li key={todo.id}>
-                <input
-                  type="checkbox"
-                  defaultChecked={todo.isDone}
-                  onClick={() => {
-                    updateCheckedItem(todo);
-                  }}
-                />
-
-                {todo.content}
-                <button
-                  onClick={() => {
-                    handleDelete(todo);
-                  }}
-                >
-                  Deleted
-                </button>
+              <li key={todo.id} className="mb-2">
+                <Space direction="vertical">
+                  <Card style={{ width: 500 }}>
+                    <input
+                      type="checkbox"
+                      defaultChecked={todo.isDone}
+                      onClick={() => {
+                        updateCheckedItem(todo);
+                      }}
+                    />{" "}
+                    {todo.content}
+                    <br />
+                    <label className="text-gray-400 text-xs">
+                      Add on : {todo.date}
+                    </label>
+                    <DeleteOutlined
+                      onClick={() => {
+                        handleDelete(todo);
+                      }}
+                    />
+                  </Card>
+                </Space>
               </li>
             );
           })}

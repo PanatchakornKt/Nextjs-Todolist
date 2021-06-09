@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from 'antd';
 
 interface TodoInputProps {
   addTodo: string;
@@ -32,9 +33,9 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
           onChange={onInputChange}
           required
         />
-        <button type="submit" onClick={onSubmitTodo}>
+        <Button type="submit" onClick={onSubmitTodo}>
           Add
-        </button>
+        </Button>
       </from>
     </>
   );

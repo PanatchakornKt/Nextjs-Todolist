@@ -1,14 +1,19 @@
 import React from "react";
+import { PageHeader } from "antd";
 
 interface HeaderProps {
   title: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ title = "The Todo List" }) => {
+const Header: React.FC<HeaderProps> = ({ title = "DayTech" }) => {
   return (
     <>
       <header>
-        <h1>{title}</h1>
+        <PageHeader
+          className="site-page-header"
+          title={title}
+          subTitle="TodoList"
+        ></PageHeader>
       </header>
     </>
   );
