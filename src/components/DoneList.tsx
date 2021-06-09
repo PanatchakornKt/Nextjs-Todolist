@@ -6,7 +6,7 @@ interface DoneListProps {
 }
 
 const DoneList: React.FC<DoneListProps> = ({ todos }) => {
-
+    
   const todosDone = todos.filter((todo) => {
     return todo.isDone;
   });
@@ -16,7 +16,7 @@ const DoneList: React.FC<DoneListProps> = ({ todos }) => {
       <div>
         <h2>Done</h2>
         <ul>
-          {todosDone.map((todo) => {
+          {todos.map((todo) => {
             return (
               <li key={todo.id}>
                 <input type="checkbox" defaultChecked={todo.isDone} disabled />
