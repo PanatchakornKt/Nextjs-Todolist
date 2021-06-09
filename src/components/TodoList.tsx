@@ -1,28 +1,37 @@
 import React from "react";
+import { Todo } from "@/components/DisplayTodo";
 
-const TodoList = () => {
-  const todos = [
-    {
-      id: Math.random() * 1000,
-      content: "Do Homework",
-      isDone: true,
-    },
-    {
-      id: Math.random() * 1000,
-      content: "Play game",
-      isDone: false,
-    },
-  ];
+interface TodoListProps {
+  todos: Todo[];
+  setTodos: string;
+}
+
+const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
+  const todosInProgress = todos.filter((todo) => {
+    return !todo.isDone;
+  });
+
+  const updateCheckedItem = (todo: Todo) => {
+    todo.isDone = !todo.isDone;
+    todos[todo.id] = todo;
+    setTodos([...todos]);
+  };
 
   return (
     <>
       <div>
-      <h2>Todo</h2>
+        <h2>Todo</h2>
         <ul>
-          {todos.map((todo) => {
+          {todosInProgress.map((todo) => {
             return (
               <li key={todo.id}>
-                <input type="checkbox" defaultChecked={todo.isDone} />
+                <input
+                  type="checkbox"
+                  defaultChecked={todo.isDone}
+                  onChange={(e) => {
+                    updateCheckedItem(todo);
+                  }}
+                />
                 {todo.content}
               </li>
             );

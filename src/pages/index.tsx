@@ -1,18 +1,11 @@
-import { Button, DatePicker, Typography, version } from "antd";
-const { Title } = Typography;
-import Header from "@/components/Header";
-import TodoInput from "@/components/TodoInput";
-import TodoList from "@/components/TodoList";
-import DoneList from "@/components/DoneList";
+import React from "react";
+import DisplayTodo from "@/components/DisplayTodo";
 
 const Home = () => {
   return (
     <>
       <title>DayTech TodoList</title>
-      <Header />
-      <TodoInput />
-      <TodoList />
-      <DoneList />
+      <DisplayTodo />
     </>
   );
 };

@@ -1,29 +1,25 @@
 import React from "react";
+import { Todo } from "@/components/DisplayTodo";
 
-const DoneList = () => {
+interface DoneListProps {
+  todos: Todo[];
+}
 
-  const todos = [
-    {
-      id: Math.random() * 1000,
-      content: "Do Homework",
-      isDone: true,
-    },
-    {
-      id: Math.random() * 1000,
-      content: "Play game",
-      isDone: true,
-    },
-  ];
+const DoneList: React.FC<DoneListProps> = ({ todos }) => {
+
+  const todosDone = todos.filter((todo) => {
+    return todo.isDone;
+  });
 
   return (
     <>
       <div>
         <h2>Done</h2>
         <ul>
-          {todos.map((todo) => {
+          {todosDone.map((todo) => {
             return (
               <li key={todo.id}>
-                <input type="checkbox" defaultChecked={todo.isDone} disabled/>
+                <input type="checkbox" defaultChecked={todo.isDone} disabled />
                 {todo.content}
               </li>
             );

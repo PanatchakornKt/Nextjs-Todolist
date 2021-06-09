@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { Todo } from "@/components/DisplayTodo";
 
-const TodoInput = () => {
-  
-  const todoObj = {
-    id: Math.random() * 1000,
-    content: "",
-    isDone: false,
-  };
+interface TodoInputProps {
+  addTodo: string;
+}
+
+const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
+  const todoObj: Todo = new Todo();
   const [todo, setTodo] = useState(todoObj);
 
   const HandleTodoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,6 +16,7 @@ const TodoInput = () => {
   const onSubmitTodo = (e: any) => {
     e.preventDefault();
     console.log("todo: ", todo);
+    addTodo(todo);
     setTodo(todoObj);
   };
 
