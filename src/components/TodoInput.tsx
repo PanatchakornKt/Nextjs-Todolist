@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { Todo } from "@/components/DisplayTodo";
 
 interface TodoInputProps {
   addTodo: string;
 }
 
 const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
-  const todoObj: Todo = new Todo();
-  const [todo, setTodo] = useState(todoObj);
+  const [todo, setTodo] = useState("");
 
-  const HandleTodoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTodo({ ...todo, content: e.target.value });
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodo(e.target.value);
   };
 
-  const onSubmitTodo = (e: string) => {
+  const onSubmitTodo = (e: TodoInputProps) => {
     e.preventDefault();
     console.log("todo: ", todo);
     addTodo(todo);
-    setTodo(todoObj);
   };
 
   return (
@@ -25,10 +22,10 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
       <from>
         <input
           type="text"
-          name="todo"
-          value={todo.content}
+          value={todo}
           placeholder="What do u want to do?"
-          onChange={HandleTodoChange}
+          onChange={onInputChange}
+          required
         />
         <button type="submit" onClick={onSubmitTodo}>
           Add

@@ -1,22 +1,24 @@
 import React from "react";
-// import { useRecoilValue } from "recoil";
-// import { todosState } from "@/components/AtomsState";
+import { useRecoilState } from "recoil";
+import { todosState } from "@/components/AtomsState";
 import { Todo } from "@/components/DisplayTodo";
 
-interface DoneListProps {
-  todos: Todo[];
-}
+const DoneList = () => {
+  const [todos, setTodos] = useRecoilState(todosState);
 
-const DoneList: React.FC<DoneListProps> = ({ todos }) => {
-  //const todos = useRecoilValue(todosState);
   const todosDone = todos.filter((todo) => {
     return todo.isDone;
   });
+
+  const handleClearAll = () => {
+    setTodos([]);
+  };
 
   return (
     <>
       <div>
         <h2>Done</h2>
+        <button onClick={() => handleClearAll()}>Clear All</button>
         <ul>
           {todosDone.map((todo) => {
             return (

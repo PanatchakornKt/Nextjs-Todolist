@@ -1,29 +1,36 @@
 import React from "react";
-//import { useRecoilValue } from "recoil";
-//import { todosState } from "@/components/AtomsState";
+import { useRecoilState } from "recoil";
+import { todosState } from "@/components/AtomsState";
 import { Todo } from "@/components/DisplayTodo";
+import { TodoProps } from "@/components/Types";
 
-interface TodoListProps {
-  todos: Todo[];
-  setTodos: string;
-}
-
-const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
-  //const todos = useRecoilValue(todosState);
+const TodoList = () => {
+  const [todos, setTodos] = useRecoilState(todosState);
 
   const todosInProgress = todos.filter((todo) => {
     return !todo.isDone;
   });
 
-  const onDelete = (id: string) => {
-    console.log("delter");
-    //setTodos(todosInProgress.filter((todo) => todo.id !== id));
+  const handleDelete = (todo: TodoProps) => {
+    if (todos.length > 0) {
+      setTodos(todos.filter((item) => item.id !== todo.id));
+    }
   };
 
-  const updateCheckedItem = (todo: Todo) => {
-    todo.isDone = !todo.isDone;
-    todos[todo.id] = todo;
-    setTodos([...todos]);
+  const updateCheckedItem = (todo: TodoProps) => {
+    if (todos.length > 0) {
+      setTodos(
+        todos.map((item) => {
+          if (item.id === todo.id) {
+            return {
+              ...item,
+              isDone: !item.isDone,
+            };
+          }
+          return item;
+        })
+      );
+    }
   };
 
   return (
@@ -37,12 +44,19 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
                 <input
                   type="checkbox"
                   defaultChecked={todo.isDone}
-                  onChange={(e) => {
+                  onClick={() => {
                     updateCheckedItem(todo);
                   }}
                 />
+
                 {todo.content}
-                <button onClick={onDelete}>Deleted</button>
+                <button
+                  onClick={() => {
+                    handleDelete(todo);
+                  }}
+                >
+                  Deleted
+                </button>
               </li>
             );
           })}
