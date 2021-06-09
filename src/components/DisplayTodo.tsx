@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import Header from "@/components/Header";
