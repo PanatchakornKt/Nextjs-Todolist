@@ -1,22 +1,30 @@
 import React from "react";
-import { PageHeader } from "antd";
+import { PageHeader, Layout, Breadcrumb } from "antd";
 
 interface HeaderProps {
   title: string;
+  children: string;
 }
+const { Content } = Layout;
 
-const Header: React.FC<HeaderProps> = ({ title = "DayTech" }) => {
+const Headers: React.FC<HeaderProps> = ({ title = "DayTech", children }) => {
   return (
     <>
-      <header>
-        <PageHeader
-          className="site-page-header"
-          title={title}
-          subTitle="TodoList"
-        ></PageHeader>
-      </header>
+      <Layout>
+        <header>
+          <PageHeader
+            className="mt-10"
+            style={{ padding: "0 50px", margin: "20px 0" }}
+            title={title}
+            subTitle="TodoList"
+          ></PageHeader>
+        </header>
+        <Content style={{ padding: "0 50px" }}>
+          <div className="site-layout-content">{children}</div>
+        </Content>
+      </Layout>
     </>
   );
 };
 
-export default Header;
+export default Headers;

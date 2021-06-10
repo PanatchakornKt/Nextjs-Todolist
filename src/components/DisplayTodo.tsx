@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
-import Header from "@/components/Header";
+import Headers from "@/components/Header";
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import DoneList from "@/components/DoneList";
+import Header from "@/components/Header";
 
 const DisplayTodo = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -34,12 +35,33 @@ const DisplayTodo = () => {
     setTodos([data, ...todos]);
   };
 
+  useEffect(() => {
+    getLocal();
+  }, []);
+
+  useEffect(() => {
+    saveLocal();
+  }, [todos]);
+
+  const saveLocal = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+  const getLocal = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      let Local = JSON.parse(localStorage.getItem("todos"));
+      setTodos(Local);
+    }
+  };
+
   return (
     <>
-      <Header />
-      <TodoInput addTodo={addTodo} />
-      <TodoList />
-      <DoneList />
+      <Headers>
+        <TodoInput addTodo={addTodo} />
+        <TodoList />
+        <DoneList />
+      </Headers>
     </>
   );
 };
