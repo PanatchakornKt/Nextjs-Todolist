@@ -51,16 +51,18 @@ const TodoList = () => {
                       }}
                     />
                     {(" ", " ")}
-                    {todo.content}
-                    {(" ", " ")}
-                    <DeleteOutlined
-                      onClick={() => {
-                        handleDelete(todo);
-                      }}
-                    />
+                    <label className="ml-4">{todo.content}</label>
+                    <label className="ml-4">
+                      {" "}
+                      <DeleteOutlined
+                        onClick={() => {
+                          handleDelete(todo);
+                        }}
+                      />
+                    </label>
                   </div>
-                  <label className="text-gray-400 text-xs ml-5">
-                    Add on : {todo.date}
+                  <label className="text-gray-400 text-xs ml-9">
+                    Updated on : {todo.date}
                   </label>
                 </Card>
               </Space>
