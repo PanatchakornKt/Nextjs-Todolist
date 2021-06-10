@@ -49,8 +49,10 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
           Add
         </Button>
         <Button danger type="submit" onClick={handleDelete}>
-          Delete All Todo
+          Delete All Todos
         </Button>
+        {(" ", " ")}
+        All tasks : {todos.length}
       </Form>
     </>
   );

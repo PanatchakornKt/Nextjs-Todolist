@@ -65,10 +65,10 @@ const DisplayTodo = () => {
       </div>
       <div className="pl-12 pr-12">
         <Descriptions layout="vertical" bordered>
-          <Descriptions.Item label="Todo in progress.">
+          <Descriptions.Item label="Todos in progress.">
             <TodoList />
           </Descriptions.Item>
-          <Descriptions.Item label="Todo done.">
+          <Descriptions.Item label="Todos done.">
             <DoneList />
           </Descriptions.Item>
         </Descriptions>
