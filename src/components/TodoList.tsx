@@ -8,7 +8,7 @@ import { Space, Card } from "antd";
 const TodoList = () => {
   const [todos, setTodos] = useRecoilState(todosState);
 
-  const todosInProgress = todos.filter((todo) => {
+  const todosInProgress = todos.filter((todo: TodoProps) => {
     return !todo.isDone;
   });
 

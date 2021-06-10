@@ -8,7 +8,7 @@ import { Button } from "antd";
 const DoneList = () => {
   const [todos, setTodos] = useRecoilState(todosState);
 
-  const todosDone = todos.filter((todo) => {
+  const todosDone = todos.filter((todo: TodoProps) => {
     return todo.isDone;
   });
 
