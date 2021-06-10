@@ -24,9 +24,7 @@ const DoneList = () => {
   return (
     <>
       <div>
-        <Button danger onClick={() => handleClearAll()}>
-          Clear All Done
-        </Button>
+        <Button onClick={() => handleClearAll()}>Clear All Done</Button>
         <ul className="mt-2">
           {todosDone.map((todo) => {
             return (

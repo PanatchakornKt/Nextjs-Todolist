@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import { TodoProps } from "@/components/Types";
-import { Button, Input, Form } from "antd";
+import { Button, Form, Space, Input } from "antd";
+import { AudioOutlined } from "@ant-design/icons";
 
 interface TodoInputProps {
   addTodo: string;
@@ -47,12 +48,12 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
         />
         <Button type="submit" onClick={onSubmitTodo}>
           Add
-        </Button>
+        </Button>{" "}
         <Button danger type="submit" onClick={handleDelete}>
           Delete All Todos
         </Button>
         {(" ", " ")}
-        All tasks : {todos.length}
+        Total tasks : {todos.length}
       </Form>
     </>
   );

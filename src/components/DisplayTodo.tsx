@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { Descriptions } from "antd";
 import { todosState } from "@/components/AtomsState";
 import Headers from "@/components/Header";
 import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import DoneList from "@/components/DoneList";
 import Header from "@/components/Header";
-import { Descriptions, Badge } from "antd";
 
 const DisplayTodo = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -59,11 +59,12 @@ const DisplayTodo = () => {
   return (
     <>
       <div>
-        <Headers>
-          <TodoInput addTodo={addTodo} />
-        </Headers>
+        <Headers />
       </div>
       <div className="pl-12 pr-12">
+        <div className="mb-4">
+          <TodoInput addTodo={addTodo} />
+        </div>
         <Descriptions layout="vertical" bordered>
           <Descriptions.Item label="Todos in progress.">
             <TodoList />
