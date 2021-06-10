@@ -1,7 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
-import { Todo } from "@/components/DisplayTodo";
 import { TodoProps } from "@/components/Types";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Space, Card } from "antd";

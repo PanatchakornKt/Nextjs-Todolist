@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
-import { Todo } from "@/components/DisplayTodo";
+import { TodoProps } from "@/components/Types";
 import { Space, Card } from "antd";
 import { Button } from "antd";
 
@@ -12,8 +12,14 @@ const DoneList = () => {
     return todo.isDone;
   });
 
-  const handleClearAll = () => {
-    setTodos([]);
+  const handleClearAll = (todo: TodoProps) => {
+    if (todos.length > 0) {
+      setTodos(
+        todos.filter((todo) => {
+          return !todo.isDone;
+        })
+      );
+    }
   };
 
   return (
