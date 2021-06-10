@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import { TodoProps } from "@/components/Types";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Space, Card } from "antd";
+import { Space, Card, Checkbox } from "antd";
 
 const TodoList = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -36,39 +36,37 @@ const TodoList = () => {
 
   return (
     <>
-      <div>
-        <h2>Todo</h2>
-        <br />
-        <ul>
-          {todosInProgress.map((todo) => {
-            return (
-              <li key={todo.id} className="mb-2">
-                <Space direction="vertical">
-                  <Card style={{ width: 500 }}>
-                    <input
-                      type="checkbox"
+      <ul>
+        {todosInProgress.map((todo) => {
+          return (
+            <li key={todo.id} className="mb-2">
+              <Space direction="vertical">
+                <Card style={{ width: 500 }}>
+                  <div>
+                    <Checkbox
                       defaultChecked={todo.isDone}
                       onClick={() => {
                         updateCheckedItem(todo);
                       }}
-                    />{" "}
+                    />
+                    {(" ", " ")}
                     {todo.content}
-                    <br />
-                    <label className="text-gray-400 text-xs">
-                      Add on : {todo.date}
-                    </label>
+                    {(" ", " ")}
                     <DeleteOutlined
                       onClick={() => {
                         handleDelete(todo);
                       }}
                     />
-                  </Card>
-                </Space>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+                  </div>
+                  <label className="text-gray-400 text-xs ml-5">
+                    Add on : {todo.date}
+                  </label>
+                </Card>
+              </Space>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 };

@@ -2,8 +2,7 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import { TodoProps } from "@/components/Types";
-import { Space, Card } from "antd";
-import { Button } from "antd";
+import { Space, Card, Button, Checkbox } from "antd";
 
 const DoneList = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -25,25 +24,18 @@ const DoneList = () => {
   return (
     <>
       <div>
-        <h2>
-          Todo Done{" "}
-          <Button danger onClick={() => handleClearAll()}>
-            Clear All
-          </Button>
-        </h2>
-        <br />
-        <ul>
+        <Button danger onClick={() => handleClearAll()}>
+          Clear All Done
+        </Button>
+        <ul className="mt-2">
           {todosDone.map((todo) => {
             return (
               <li key={todo.id} className="mb-2">
                 <Space direction="vertical">
                   <Card style={{ width: 500 }}>
                     <p>
-                      <input
-                        type="checkbox"
-                        defaultChecked={todo.isDone}
-                        disabled
-                      />{" "}
+                      <Checkbox defaultChecked={todo.isDone} disabled />
+                      {(" ", " ")}
                       {todo.content}
                     </p>
                   </Card>

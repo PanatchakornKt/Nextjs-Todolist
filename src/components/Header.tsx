@@ -5,7 +5,7 @@ interface HeaderProps {
   title: string;
   children: string;
 }
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
 const Headers: React.FC<HeaderProps> = ({ title = "DayTech", children }) => {
   return (
@@ -22,6 +22,7 @@ const Headers: React.FC<HeaderProps> = ({ title = "DayTech", children }) => {
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">{children}</div>
         </Content>
+        <Footer></Footer>
       </Layout>
     </>
   );

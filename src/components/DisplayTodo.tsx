@@ -6,6 +6,7 @@ import TodoInput from "@/components/TodoInput";
 import TodoList from "@/components/TodoList";
 import DoneList from "@/components/DoneList";
 import Header from "@/components/Header";
+import { Descriptions, Badge } from "antd";
 
 const DisplayTodo = () => {
   const [todos, setTodos] = useRecoilState(todosState);
@@ -59,9 +60,15 @@ const DisplayTodo = () => {
     <>
       <Headers>
         <TodoInput addTodo={addTodo} />
-        <TodoList />
-        <DoneList />
       </Headers>
+      <Descriptions layout="vertical" bordered>
+        <Descriptions.Item label="Todo in progress.">
+          <TodoList />
+        </Descriptions.Item>
+        <Descriptions.Item label="Todo done." >
+          <DoneList />
+        </Descriptions.Item>
+      </Descriptions>
     </>
   );
 };
