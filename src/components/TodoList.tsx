@@ -36,6 +36,7 @@ const TodoList = () => {
 
   return (
     <>
+      {" "}
       <ul>
         {todosInProgress.map((todo) => {
           return (

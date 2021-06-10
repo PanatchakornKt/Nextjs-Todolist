@@ -58,17 +58,21 @@ const DisplayTodo = () => {
 
   return (
     <>
-      <Headers>
-        <TodoInput addTodo={addTodo} />
-      </Headers>
-      <Descriptions layout="vertical" bordered>
-        <Descriptions.Item label="Todo in progress.">
-          <TodoList />
-        </Descriptions.Item>
-        <Descriptions.Item label="Todo done." >
-          <DoneList />
-        </Descriptions.Item>
-      </Descriptions>
+      <div>
+        <Headers>
+          <TodoInput addTodo={addTodo} />
+        </Headers>
+      </div>
+      <div className="pl-12 pr-12">
+        <Descriptions layout="vertical" bordered>
+          <Descriptions.Item label="Todo in progress.">
+            <TodoList />
+          </Descriptions.Item>
+          <Descriptions.Item label="Todo done.">
+            <DoneList />
+          </Descriptions.Item>
+        </Descriptions>
+      </div>
     </>
   );
 };

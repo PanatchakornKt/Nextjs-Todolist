@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { todosState } from "@/components/AtomsState";
 import { TodoProps } from "@/components/Types";
-import { Button, Input } from "antd";
+import { Button, Input, Form } from "antd";
 
 interface TodoInputProps {
   addTodo: string;
@@ -20,7 +20,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
   const onSubmitTodo = (e: TodoInputProps) => {
     e.preventDefault();
     if (todo.length === 0) {
-      setError("Please add some to do.");
+      setError("Please add some Todo.");
       alert(error);
     } else {
       addTodo(todo);
@@ -36,7 +36,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
 
   return (
     <>
-      <from>
+      <Form>
         <Input
           type="text"
           style={{ width: 300 }}
@@ -44,7 +44,6 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
           onChange={onInputChange}
           value={todo}
           allowClear
-          required
         />
         <Button type="submit" onClick={onSubmitTodo}>
           Add
@@ -52,7 +51,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
         <Button danger type="submit" onClick={handleDelete}>
           Delete All Todo
         </Button>
-      </from>
+      </Form>
     </>
   );
 };
