@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
-import { todosState } from "@/components/AtomsState";
+import { todosState, searchState } from "@/components/AtomsState";
 import { TodoProps } from "@/components/Types";
 import { Button, Form, Space, Input } from "antd";
 import { AudioOutlined } from "@ant-design/icons";
-
-const { Search } = Input;
 
 interface TodoInputProps {
   addTodo: string;
@@ -13,17 +11,12 @@ interface TodoInputProps {
 
 const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
   const [todo, setTodo] = useState<string>("");
-  const [keyword, setKeyword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [todos, setTodos] = useRecoilState(todosState);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo(e.target.value);
   };
-
-  // const onInputSerach = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearch(e.target.value);
-  // };
 
   const onSubmitTodo = (e: TodoInputProps) => {
     e.preventDefault();
@@ -34,30 +27,6 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
       addTodo(todo);
     }
     setTodo("");
-  };
-
-  // const todosSearch = todos.filter((todo: TodoProps) => {
-  //   return todo.content;
-  // });
-
-  const omSubmitSearch = (e: TodoInputProps, todo: TodoProps) => {
-    console.log(keyword);
-    //   // e.preventDefault();
-    //   console.log(todos);
-    //   if (todos.lenght > 0) {
-    //     setSearch(
-    //       todos.map((item) => {
-    //         if (item.content === todo.content) {
-    //           return {
-    //             ...item,
-    //             content: item.content,
-    //           };
-    //         }
-    //         return item;
-    //       })
-    //     );
-    //   }
-    //   console.log(search);
   };
 
   const handleDelete = (todo: TodoProps) => {
@@ -86,18 +55,6 @@ const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
         {(" ", " ")}
         Total tasks : {todos.length}
       </Form>
-      <div className="mt-2">
-        <Space direction="vertical">
-          <Search
-            placeholder="Search your todo here..."
-            allowClear
-            value={keyword}
-            onSearch={omSubmitSearch}
-            onChange={(e) => setKeyword(e.target.value)}
-            style={{ width: 300 }}
-          />
-        </Space>
-      </div>
     </>
   );
 };
