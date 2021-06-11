@@ -72,6 +72,7 @@ const DisplayTodo = () => {
             </Descriptions.Item>
           </Descriptions>
         </div>
+        <Divider orientation="left">Manage TodoList</Divider>
         <Descriptions layout="vertical" bordered>
           <Descriptions.Item label="Todos in progress.">
             <TodoList />
